@@ -28,14 +28,6 @@
     });
 
     /*------------------
-		Navigation
-	--------------------*/
-    $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
-
-    /*------------------
         Hero Slider
     --------------------*/
     $(".hero-items").owlCarousel({
@@ -101,6 +93,35 @@
             },
             768: {
                 items: 5,
+            }
+        }
+    });
+
+    /*------------------
+        Testimonial Carousel
+    --------------------*/
+    $(".testimonial-slider").owlCarousel({
+        loop: true,
+        margin: 25,
+        nav: true,
+        items: 4,
+        dots: true,
+        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            576: {
+                items: 2,
+            },
+            992: {
+                items: 2,
+            },
+            1200: {
+                items: 2,
             }
         }
     });
@@ -248,3 +269,16 @@
 	});
 
 })(jQuery);
+
+let mobileMenuToggle = document.querySelector(".site-menu-toggle")
+let mobileMenu = document.querySelector(".mobile-menu")
+
+mobileMenuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open-menu")
+    if(mobileMenuToggle.children[0].classList.contains("fa-bars")){
+        mobileMenuToggle.innerHTML = `<span class="fa fa-times"></span>`
+    }
+    else{
+        mobileMenuToggle.innerHTML = `<span class="fa fa-bars"></span>`
+    }
+})
