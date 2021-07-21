@@ -1113,7 +1113,7 @@ ol {
 	background-position: center;
 	padding: 2rem;
 	position: relative;
-	z-index: 10000000;
+	z-index: 100;
 }
 
 .call-to-action-banner::before{
@@ -1130,7 +1130,7 @@ ol {
 .call-to-action-banner > .container{
 	color: white;
 	text-align: center;
-	z-index: 100000;
+	z-index: 1000;
 }
 
 .call-to-action-banner > .container h2:nth-child(3){
@@ -3992,7 +3992,7 @@ ol {
 	position: fixed;
 	bottom: 20px;
 	right: 0;
-	z-index: 999999;
+	z-index: 9999;
 }
 
 .fixed-icon{
