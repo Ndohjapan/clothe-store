@@ -272,6 +272,11 @@
 
 let mobileMenuToggle = document.querySelector(".site-menu-toggle")
 let mobileMenu = document.querySelector(".mobile-menu")
+let productModal = document.querySelectorAll(".product-card-modal")
+let closeModal = document.querySelector(".close-modal")
+let closeImageModal = document.querySelector(".close-image-modal")
+let quickView = document.querySelectorAll(".quick-view")
+let modalImage = document.querySelector(".modal-image")
 
 mobileMenuToggle.addEventListener("click", () => {
     mobileMenu.classList.toggle("open-menu")
@@ -282,3 +287,24 @@ mobileMenuToggle.addEventListener("click", () => {
         mobileMenuToggle.innerHTML = `<span class="fa fa-bars"></span>`
     }
 })
+
+closeModal.addEventListener("click", () => {
+    productModal[0].classList.toggle("open-modal")
+})
+
+quickView.forEach(btn => {
+    btn.addEventListener("click", () => {
+        productModal[0].classList.toggle("open-modal")
+    })
+})
+
+modalImage.addEventListener("click", () => {
+    productModal[1].classList.toggle("open-modal")
+    productModal[0].classList.toggle("open-modal")
+})
+
+closeImageModal.addEventListener("click", () =>{
+    productModal[0].classList.toggle("open-modal")
+    productModal[1].classList.toggle("open-modal")
+})
+
