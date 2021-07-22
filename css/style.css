@@ -4444,4 +4444,8 @@ ol {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+
+	#product-page-card.container{
+		transform: scale(0.7);
+	}
 }
