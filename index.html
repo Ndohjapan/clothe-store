@@ -173,7 +173,7 @@
 
         <div class="about-section-info col-sm-12 ml-sm-10 col-lg-6 col-md-6 pl-center">
             <div class="about-section-info-header">
-                <h1>Welcome to StacyUk Couture</h1>
+                <h1>StacyUk Couture</h1>
             </div>
             <div class="about-section-info-body-text">
                 <h3>The Most Reliable and Professional Tailor for all your Kids clothings, Female clothing and Quality materials</h3>
@@ -672,9 +672,6 @@
             
         </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
     </div>
 
     <!-- Blog overview -->
@@ -829,7 +826,7 @@
     </div>
 
     <!-- Product card -->
-    <div class="product-card-modal">
+    <div class="product-card-modal" style="display: none;">
         <div class="container mt-5 mb-5">
             <div class="d-flex justify-content-center row">
                 <div class="col-md-10">
@@ -862,6 +859,41 @@
       </div>>
     </div>
 
+    <!-- Product Image Carousel -->
+    <div class="product-card-modal">
+        
+        <button class="btn btn-sm mt-2 close-modal close-image-modal" type="button">Close <i class="fa fa-times"></i> </button>
+
+        <div class="product-slider product-card-slider owl-carousel container">
+            <div class="  testimonial-section-card  row">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/man-3.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+                
+            </div>
+            <div class="  testimonial-section-card  row">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/man-2.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+                
+            </div>
+            <div class="  row testimonial-section-card">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/man-4.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+                
+            </div>
+            <div class="  row testimonial-section-card">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/women-3.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+            </div>
+            
+            
+        </div>
+          
+    </div>
+
 </body>
 
     <!-- Script inclusion -->
@@ -870,8 +902,6 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.countdown.min.js%2bjquery.nice-select.min.js%2bjquery.zoom.min.js%2bjquery.dd.min.js%2bjquery.slicknav.js.pagespeed.jc.pQbQnv7jXZ.js"></script>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script src="./js/jquery-ui.js%2bpopper.min.js.pagespeed.jc.ZsdIG06sXH.js"></script>
     <script>
@@ -911,6 +941,10 @@
          
         gtag('config', 'UA-23581568-13');
     </script>
+
+    <!-- Bootstrap Carousel -->
+    $('.carousel').carousel()
+
     <script defer src="../../../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"670690a36a61c4e8","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
 
 </html>
