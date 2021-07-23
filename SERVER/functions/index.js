@@ -1,0 +1,159 @@
+const functions = require("firebase-functions");
+const DBdebug = require("debug")("app:db")
+const express = require("express");
+const cookieParser = require("cookie-parser")
+const FireStore = require("@google-cloud/firestore");
+const dotenv = require("dotenv")
+dotenv.config()
+const fireStore = new FireStore()
+const fireStoreClient = require("./db");
+const cloudinary = require("./utils/cloudinary");
+
+
+const app = express()
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.set("view engine", "ejs")
+app.use(express.static("public"));
+app.use(cookieParser())
+app.disable("x-powered-by")
+
+
+const admin = require("./routes/admin")
+
+app.use("/admin", admin)
+
+app.get("/check", (req, res) => {
+    res.render("admin")
+})
+
+app.get("/", async(req, res) => {
+
+    let Kids = await fireStoreClient.get_with_limit("Products", "root_category", "Kids")
+    let Female = await fireStoreClient.get_with_limit("Products", "root_category", "Female")
+    let Material = await fireStoreClient.get_with_limit("Products", "root_category", "Material")
+
+    res.render("index.ejs", { Kids, Female, Material })
+})
+
+app.get("/detail/:id", async(req, res) => {
+    const id = req.params.id
+    let get_product = async() => {
+        console.log("abput sending product from firrestore")
+        product = await fireStoreClient.findById("Products", id)
+        let data = product.data()
+        data.id = product.id
+        return data
+    }
+    let product = await get_product();
+
+    return res.render("detail", { product })
+})
+
+app.get("/search/:query/:value", async(req, res) => {
+    const query = req.params.query
+    const value = req.params.value
+    const search_prodocts = []
+    let categories_list = []
+    let products;
+
+    const get_category = async() => {
+        console.log("abput sending category to firrestore")
+        let categories = await fireStoreClient.get("Category")
+        categories.forEach((doc) => {
+            categories_list.push(doc.data())
+        });
+    }
+    await get_category()
+
+    const get_related_products = async() => {
+        console.log("Fetting related produsrs- from firrestore")
+        if (query === "all") {
+            let products = await fireStoreClient.get("Products")
+            products.forEach((doc) => {
+                data = doc.data()
+                data.id = doc.id
+                search_prodocts.push(data)
+            });
+            res.render("search", { search_prodocts, categories_list })
+        } else {
+            let products = await fireStoreClient.array_contains("Products", query, value)
+            products.forEach((doc) => {
+                data = doc.data()
+                data.id = doc.id
+                search_prodocts.push(data)
+            });
+            res.render("search", { search_prodocts, categories_list })
+        }
+    }
+    await get_related_products()
+})
+
+app.get("/cartitems", async(req, res) => {
+    res.render("cart")
+})
+
+app.post("/cart", async(req, res) => {
+    const body = JSON.parse(req.body);
+    console.log("body: \n\n", body)
+    const products = []
+    let item
+
+    for await (let product of body) {
+        console.log("abput sending product from firrestore")
+        let product_ = await fireStoreClient.findById("Products", product.id)
+        item = product_.data()
+        item.id = product_.id
+        products.push(item)
+    };
+
+    console.log("\n\nproducts", products)
+    res.send(products)
+})
+
+app.post("/order/add", async(req, res) => {
+    const body = JSON.parse(req.body);
+
+    let data = {
+        products: body,
+        date: Date.now()
+    }
+
+    const add = async() => {
+        console.log("abput sending to firrestore")
+        let data_ = await fireStoreClient.add("Orders", data)
+        res.send(data_.id)
+    }
+    await add()
+})
+
+app.get("/order/detail/:id", async(req, res) => {
+    const id = req.params.id
+    let orders;
+    let order_items = []
+    let total = 0;
+    let get_order = async() => {
+        console.log("abput sending orders from firrestore")
+        orders = await fireStoreClient.findById("Orders", id)
+        let data = orders.data()
+        data.id = orders.id
+        return data
+    }
+    orders = await get_order();
+
+    for await (let product of orders.products) {
+        total += product.quantity
+        console.log("abput sending product from firrestore")
+        let product_ = await fireStoreClient.findById("Products", product.id)
+        data = product_.data()
+        data.id = product_.id;
+        order_items.push(data)
+    };
+
+    console.log(total)
+    return res.render("order", { order_items, orders, total })
+})
+
+
+
+exports.app = functions.https.onRequest(app);

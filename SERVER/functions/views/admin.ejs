@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive Tabs Basic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/template1/responsive-tabs.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/cd-themify-icons@0.0.1/index.css">
+</head>
+
+<body class="bd1">
+    <div id="demopage">
+        <h1>StacyUk Couture</h1>
+
+        <div class="container1 container">
+            <ul class="rtabs">
+                <li><a href="#view1">Kiddies</a></li>
+                <li><a href="#view2">Women</a></li>
+                <li><a href="#view3">Materials/Applique</a></li>
+                <li><a href="#view4">New Category</a></li>
+            </ul>
+            <div class="panel-container">
+                <div id="view1">
+                    <button class="btn btn-outline-primary newProduct" title="Add New Product">
+                        Add <i class="fa fa-plus"></i>
+                    </button>
+                    <div class="container mt-5 mb-5">
+                        <div class="d-flex justify-content-center row">
+                            <div class="col-md-10">
+                                <div class="row p-2 bg-white border rounded">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/QpjAiHq.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant olap shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/JvPeqEF.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant trident shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$14.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/Bf4dIaN.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant ruybi shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>123</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant tinor shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>110</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$15.99</h4><span class="strike-text">$21.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="view2">
+                    <button class="btn btn-outline-primary newProduct" title="Add New Product">
+                        Add <i class="fa fa-plus"></i>
+                    </button>
+                    <div class="container mt-5 mb-5">
+                        <div class="d-flex justify-content-center row">
+                            <div class="col-md-10">
+                                <div class="row p-2 bg-white border rounded">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/QpjAiHq.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant olap shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/JvPeqEF.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant trident shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$14.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/Bf4dIaN.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant ruybi shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>123</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant tinor shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>110</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$15.99</h4><span class="strike-text">$21.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="view3">
+                    <button class="btn btn-outline-primary newProduct" title="Add New Product">
+                        Add <i class="fa fa-plus"></i>
+                    </button>
+                    <div class="container mt-5 mb-5">
+                        <div class="d-flex justify-content-center row">
+                            <div class="col-md-10">
+                                <div class="row p-2 bg-white border rounded">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/QpjAiHq.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant olap shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/JvPeqEF.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant trident shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$14.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/Bf4dIaN.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant ruybi shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>123</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-white border rounded mt-2">
+                                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://i.imgur.com/HO8e9b8.jpg"></div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>Quant tinor shirts</h5>
+                                        <div class="d-flex flex-row">
+                                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>110</span>
+                                        </div>
+                                        <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                                        <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">$15.99</h4><span class="strike-text">$21.99</span>
+                                        </div>
+                                        <h6 class="text-success">Free shipping</h6>
+                                        <div class="d-flex flex-column mt-4"><button class="btn btn-outline-primary btn-sm update-info-btn" type="button">Update Info</button><button class="btn btn-outline-primary btn-sm mt-2 update-images-btn" type="button">Update Images</button>
+                                            <button class="btn btn-outline-primary btn-sm mt-2 delete-btn" type="button">Delete Product <i class="fa fa-trash"></i> </button></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view4">
+                    <h2 class="mb-3">Create New Category</h2>
+                    <button class="btn btn-primary categoryBtn"> <i class="fa fa-plus"></i> New Category</button>
+                </div>
+
+            </div>
+            <br />
+
+
+        </div>
+        <div class="update-modal">
+
+            <button class="btn btn-danger close-modal"> <i class="fa fa-close"></i> </button>
+
+            <div class="container contact-form">
+                <form method="">
+                    <h3>Update Product Info</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="txtName" class="form-control" placeholder="Name Of Product" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="txtSize" class="form-control" placeholder="Size" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="txtPrice" class="form-control" placeholder="Price" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="txtSlashedPrice" class="form-control" placeholder="Slashed Price" value="" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea name="txtDesc" class="form-control" placeholder="Product Description" style="width: 100%; height: 150px;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group submitBtn">
+                                <input type="submit" name="btnSubmit" class="btnContact text-center" value="Update Product" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="create-modal">
+            <button class="btn btn-danger close-modal"> <i class="fa fa-close"></i> </button>
+
+            <div class="container contact-form">
+                <form method="">
+                    <h3>Create Product</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="txtName" class="form-control" placeholder="Name Of Product" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="txtSize" class="form-control" placeholder="Size" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="txtPrice" class="form-control" placeholder="Price" value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Select Category</label>
+                                <select name="Category" id="category" class="form-control">
+                                    <option value="Trouser">Trousers</option>
+                                    <option value="Shirt">Shirts</option>
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="Senator">Senator</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="number" name="txtSlashedPrice" class="form-control" placeholder="Slashed Price" value="" />
+                            </div>
+                            <div class="form-group">
+                                <textarea name="txtDesc" class="form-control" placeholder="Product Description" style="width: 100%; height: 120px;"></textarea>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" multiple class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Upload Images</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group submitBtn">
+                                <input type="submit" name="btnSubmit" class="btnContact text-center" value="Create Product" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="update-image-modal ">
+            <button class="btn btn-danger close-modal"> <i class="fa fa-close"></i> </button>
+            <div class="container other-images owl-carousel owl-theme ">
+
+                <div class="row item">
+                    <div class=" col-12">
+                        <img src="/content/tabs-0.jpg" alt="" width="50%" class="img-fluid">
+                    </div>
+                    <div class="image-tools">
+                        <button class="btn-danger btn delete-btn">Delete Image <i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="row item">
+                    <div class=" col-12">
+                        <img src="/content/tabs-0.jpg" alt="" width="50%" class="img-fluid">
+                    </div>
+                    <div class="image-tools">
+                        <button class="btn-danger btn delete-btn">Delete Image <i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="row item">
+                    <div class=" col-12">
+                        <img src="/content/tabs-0.jpg" alt="" width="50%" class="img-fluid">
+                    </div>
+                    <div class="image-tools">
+                        <button class="btn-danger btn delete-btn">Delete Image <i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container more-images-form-container">
+
+
+                <form method="" class="more-images">
+                    <h3>Upload More Images</h3>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custom-file">
+                                <input type="file" multiple class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Upload Images</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group submitBtn ">
+                                <input type="submit" name="btnSubmit" class="btnContact text-center btn btn-primary" value="Upload" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="warning-modal">
+            <button class="btn btn-danger close-modal"> 
+                <i class="fa fa-close"></i> 
+            </button>
+            <div class="container more-images warning-modal-container row p-5 w-sm-90 w-lg-50 w-md-70">
+                <div class="col-12">
+                    <h3 class="text-center">Are Your Sure You Want To Delete This</h3>
+                </div>
+                <div class="col-12 row mt-3">
+                    <div class="col-6 js-center">
+                        <button class="btn btn-danger p-2 px-3">Yes</button>
+                    </div>
+                    <div class="col-6 js-center">
+                        <button class="btn btn-success p-2 px-3">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="newCategory-modal">
+            <button class="btn btn-danger close-modal"> 
+                <i class="fa fa-close"></i> 
+            </button>
+            <div class="container more-images-form-container warning-modal-container p-3">
+
+
+                <form method="" class="more-images p-5">
+                    <h3 class="text-center">Create New Category</h3>
+                    <div class="form-group">
+                        <label for="category">Select Section</label>
+                        <select name="Category" id="category" class="form-control">
+                            <option value="Trouser">Kids</option>
+                            <option value="Shirt">Women</option>
+                            <option value="T-Shirt">Materials and Applique</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="txtPrice" class="form-control" placeholder="Catgory Name" value="" />
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group submitBtn">
+                            <input type="submit" name="btnSubmit" class="btnContact text-center btn btn-primary " value="Create Category" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="loading-modal">
+            <div class="spinner-border text-primary"></div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+
+<script src="/js/admin.js" type="text/javascript"></script>
+
+
+</html>

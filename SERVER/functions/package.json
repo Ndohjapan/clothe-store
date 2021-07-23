@@ -1,0 +1,36 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@google-cloud/firestore": "^4.13.2",
+    "busboy-firebase": "^1.0.8",
+    "cloudinary": "^1.26.2",
+    "config": "^3.3.6",
+    "cookie-parser": "^1.4.5",
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.11.0",
+    "firebase-functions": "^3.14.1",
+    "joi": "^17.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "streamifier": "^0.1.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}

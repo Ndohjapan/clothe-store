@@ -1,0 +1,137 @@
+﻿/* Responsive Tabs - menucool.com/jquery-tabs */
+
+ul.rtabs
+{
+    text-align:left; /*set to left, center, or right to align the tabs as desired*/    
+    font-size:0;
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+        
+ul.rtabs li
+{
+    margin:0;
+    margin-right:4px; /*gap between tabs. Set it to -1px for no gap.*/
+    padding:0;
+    display:inline;
+}
+        
+ul.rtabs li a
+{
+    padding:0 16px; /* It determines tab width */
+    display:inline-block;   
+    font-weight:normal;
+    font-size:12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height:34px;/* height of tabs */
+    text-decoration: none;
+    color:#222;
+    background-color:#F5F5F5;
+    background-image: linear-gradient(#f4f4f4, #eee 50%, #d9d9d9 50%, #f4f4f4);
+    outline:none;
+    border:1px solid #CCC;
+    border-bottom:none;
+    border-radius:3px 3px 0 0;
+    position:relative;
+}
+        
+ul.rtabs li a:link, ul.rtabs li a:visited
+{
+    color:#222;
+}
+        
+ul.rtabs li a:hover
+{
+    border-color: #DDD; /*color #1*/
+    background-color:#eee;
+    background-image: linear-gradient(#fcfcfc, #f9f9f9 50%, #e9e9e9 50%, #fcfcfc);
+}
+  
+/*selected tab style */
+ul.rtabs li.selected a
+{
+    color:#000;
+    font-weight:normal;
+    border-color:#DDD; /*color #1*/
+    background:white; /*color #2*/
+    z-index:3;
+}   
+        
+/*selected tab style on hover */
+ul.rtabs li.selected a:hover
+{
+    text-decoration:none;
+}
+
+/* container of content panels */
+div.panel-container
+{
+    border:1px solid #DDD; /*color #1*/ 
+    border-radius:0 4px 4px 4px;
+    background-color:white; /*color #2*/
+    position:relative;    
+    padding:0px; margin:0px;
+    outline:none;
+    margin-top:-2px;
+}
+
+/* content panel */       
+div.panel-container > div
+{
+    padding:30px 26px;
+    
+    /* The two settings below should not be changed. */
+    display: block;
+    margin:0px;
+}  
+div.panel-container div.inactive
+{
+    display: none;
+}
+
+/* loading image before ajax content is retrieved. Only applicable when Ajax is used.*/
+div.ajaxLoading {background:transparent url(loading.gif) no-repeat center center; height:150px; width:20px; font-size:0;padding:0; margin:0 auto; }
+
+
+/* For mobiles */
+@media only screen and (max-width:560px){
+    ul.rtabs{
+        box-sizing:border-box;
+        border-left:1px solid #ccc;
+        border-top:1px solid #ccc;
+        min-width:260px;
+    }
+
+    ul.rtabs li{
+        display:inline-block;
+        box-sizing:border-box;
+        margin-right:0;
+        width:50%; /* set it to 100% for one column, 33.33% for three-column */
+    }
+
+    ul.rtabs li:last-child:nth-child(odd){
+        width:100%;
+    }
+
+    ul.rtabs li a {
+        border:none;
+        border-right:1px solid #ccc;
+        border-bottom:1px solid #ccc;
+        display:block;
+        padding:0;
+        text-align:center;
+        border-radius:0;
+    }
+
+    ul.rtabs li.selected a {
+        background-color:#fff;
+        background-image: linear-gradient(#fff, #fff 50%, #f4f4f4 50%, #fafafa);
+    }
+
+    div.panel-container {
+        border-radius:0;
+        min-width:260px;
+        box-sizing:border-box;
+    }
+}
