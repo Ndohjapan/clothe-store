@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+
+<body>
+    <div class="main_top">
+        <div class="left">
+            <h1>Nwokeji Global Interbix</h1>
+        </div>
+        <div class="right">
+            <button class="add_cat_button">Add Category</button>
+            <button class="add_product">Add Product</button>
+        </div>
+    </div>
+
+    <div class="bottom_nav">
+        <div class="row add_cat_button">
+            <i class="fas fa-plus"></i>
+            <p>category</p>
+        </div>
+        <div class="row add_product">
+            <i class="fas fa-images"></i>
+            <p>product</p>
+        </div>
+        <!-- <div class="row">
+            <i class="fas fa-edit"></i>
+            <p>Edit</p>
+        </div> -->
+        <div class="row bell_notify">
+            <i class="fas fa-bell"></i>
+            <p>notifications</p>
+        </div>
+
+
+    </div>
+
+    <div class="done_div">
+        <i class="fas fa-check-circle"></i>
+        <p>something went wrong</p>
+    </div>
+
+    <div class="error_div">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>something went wrong</p>
+    </div>
+
+    <div class="main_body">
+        <div class="left">
+            <h3>Categories</h3>
+            <div class="category_tabs">
+
+                <div class="row">
+                    <% for( let i=0 ; i < categories_list.length; i++ ) { %>
+                        <% if (i===0 ) { %>
+                            <h4 class="active_tab" category='<%= categories_list[i].category_name %>'>
+                                <%= categories_list[i].category_name %>
+                            </h4>
+                            <% } else { %>
+                                <h4 category='<%= categories_list[i].category_name %>'>
+                                    <%= categories_list[i].category_name %>
+                                </h4>
+                                <%  }  %>
+                                    <% } %>
+                </div>
+
+
+                <% for( let i=0 ; i < categories_list.length; i++ ) { %>
+                    <% if (i===0 ) { %>
+                        <div id="<%= categories_list[i].category_name %>" class="projects_gallery active_category">
+
+                            <% products_list.forEach(product => { %>
+                                <% if ( product.category===categories_list[i].category_name) { %>
+                                    <div class="each_project">
+                                        <i class="fas fa-trash trash_bin"></i>
+                                        <div class="top">
+                                            <img src="<%= product.images[0].secure_url %> " alt="">
+                                            <p style="display: none;">
+                                                <%= product.id %>
+                                            </p>
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="left">
+                                                <div class="col_2">
+                                                    <h4>
+                                                        <%= product.name %>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% }) %>
+
+                        </div>
+                        <% } else { %>
+                            <div id="<%= categories_list[i].category_name %>" class="projects_gallery">
+
+                                <% products_list.forEach(product => { %>
+                                    <% if ( product.category===categories_list[i].category_name) { %>
+                                        <div class="each_project">
+                                            <i class="fas fa-trash trash_bin"></i>
+                                            <div class="top">
+                                                <img src="<%= product.images[0].secure_url %> " alt="">
+                                                <p style="display: none;">
+                                                    <%= product.id %>
+                                                </p>
+                                            </div>
+                                            <div class="bottom">
+                                                <div class="left">
+                                                    <div class="col_2">
+                                                        <h4>
+                                                            <%= product.name %>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="right">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% }) %>
+
+                            </div>
+                            <%  }  %>
+                                <% } %>
+
+
+            </div>
+        </div>
+        <div class="right">
+            <p class="abs">3</p>
+            <h4>Latest Orders</h4>
+            <div class="orders">
+                <% order_list.forEach(order => { %>
+                    <h5>
+                        <a href="/order/detail/<%= order.id %>"> Order ID:
+                        <%= order.id %>
+                            <span>
+                            <% if ((now - order.date) > 86400000) { %>
+                                <%= Math.floor( (now - order.date) / 86400000 ) %> day(s) ago
+                            <% } else if ( (now - order.date) > 3600000 ) {%>
+                                <%= Math.floor( (now - order.date) / 3600000 ) %> hour(s) ago
+                            <% } else if ( (now - order.date) > 60000 ) {%>
+                                <%= Math.floor( (now - order.date) / 60000 ) %> mins(s) ago
+                            <% } else { %>
+                                 a few seconds ago
+                            <% } %> 
+                        </span>
+                            </a>
+                    </h5>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <i class="fas fa-bell bell bell_notify"></i>
+
+
+    <div class="add_cat">
+        <h1>Add a category</h1>
+        <input id="add_cat_input" type="text" placeholder="add a category">
+        <input id="add_cat_desc" type="text" placeholder="Category description">
+        <div class="images">
+            <input type="file" style="display: none;" accept="image/*" name="filess" id="cat_image">
+            <label class="label" for="cat_image">Choose category Image</label>
+        </div>
+        <button id="add_cat" class="add">Add</button>
+    </div>
+
+    <div class="add_produvt_modal">
+        <h1>Add a Product</h1>
+        <!-- <form action="/admin/product/iudi7486GFY" method="POST" enctype="multipart/form-data"> -->
+        <div class="form">
+            <div class="proce_category">
+                <div class="price">
+                    <h5>Product Name</h5>
+                    <input type="text" name="name" id="product_name" class="name" placeholder="Enter product name">
+                </div>
+                <div class="ccategory">
+                    <h5>Category</h5>
+                    <select name="category" id="category_chosen">
+                        <% categories_list.forEach(category => { %>
+                            <option value="<%= category.category_name %>"> <%= category.category_name %> </option>
+                            <% }) %>
+                    </select>
+                </div>
+            </div>
+            <div class="description">
+                <h5>Description</h5>
+                <textarea name="description" id="product_desciption" cols="30" rows="10" placeholder="decsription"></textarea>
+            </div>
+            <div class="images">
+                <h5>Choose Product Image <span>(first image shall be used as main image)</span></h5>
+                <input type="file" accept="image/*" name="filess" multiple id="product_image">
+                <label class="label" for="product_image">Choose Image files</label>
+            </div>
+            <div class="selected_images"></div>
+            <button type="submit" id="add_product_fetch" class="add_product_button">ADD PRODUCT</button>
+        </div>
+        <!-- </form> -->
+    </div>
+
+    <div class="del_modal">
+        <h1>Are you sure you want delete this product?</h1>
+        <div class="buttins">
+            <p class="cancel">cancel</p>
+            <p class="delete">delete</p>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        const tabs = document.querySelectorAll(".main_body .left .category_tabs .row h4");
+        const tab_divs = document.querySelectorAll(".main_body .left .category_tabs .projects_gallery");
+        const add_cat_button = document.querySelectorAll(".add_cat_button")
+        const add_cat = document.querySelector(".add_cat");
+        const add_product_button = document.querySelectorAll(".add_product");
+        const add_product_div = document.querySelector(".add_produvt_modal");
+        const bell = document.querySelectorAll(".bell_notify")
+        const notify = document.querySelector(".main_body>.right")
+
+
+        add_product_button.forEach(btn => {
+            btn.addEventListener("click", show_add_product)
+        })
+        bell.forEach(bell => {
+            bell.addEventListener("click", clicked_bell)
+        })
+        add_cat_button.forEach(btn => {
+            btn.addEventListener("click", show_add_cat)
+        })
+        tabs.forEach(tab => {
+            tab.addEventListener("click", displa_tabs)
+        });
+
+
+        function displa_tabs() {
+            tabs.forEach(tab => {
+                tab.classList.remove("active_tab")
+            });
+            let tab_div_display = document.getElementById(`${this.getAttribute("category").trim()}`)
+            this.classList.add("active_tab");
+            console.log("atrrinute", this.getAttribute("category"))
+            console.log("tab_div_display", tab_div_display)
+            tab_divs.forEach(div => {
+                div.classList.remove("active_category")
+            })
+            tab_div_display.classList.add("active_category")
+        };
+
+        function show_add_cat() {
+            add_product_div.classList.remove("displa_add_product");
+            add_cat.classList.toggle("add_category");
+        }
+
+        function show_add_product() {
+            add_cat.classList.remove("add_category");
+            add_product_div.classList.toggle("displa_add_product")
+        }
+
+        function clicked_bell() {
+            console.log(notify)
+            notify.classList.toggle("slide_notify")
+        }
+
+
+        const bottom_nav = document.querySelectorAll(".bottom_nav .row");
+        bottom_nav.forEach(nav_element => {
+            nav_element.addEventListener("click", function(e) {
+                bottom_nav.forEach(each => {
+                    if (each === this) {
+
+                    } else {
+                        each.classList.remove("active_nav_link")
+                    }
+                });
+                this.classList.toggle("active_nav_link")
+            })
+        })
+    </script>
+
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>
