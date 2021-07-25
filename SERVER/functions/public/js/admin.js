@@ -33,16 +33,57 @@ var tabbers = tabbers || (function() {
 
             let closeModal = document.querySelectorAll(".close-modal")
             let updateInfoBtn = document.querySelectorAll(".update-info-btn")
+            let sendUpdateInfo = document.querySelector(".updateInfoBtn")
             let updateImageBtn = document.querySelectorAll(".update-images-btn")
             let deleteBtn = document.querySelectorAll(".delete-btn")
             let categoryBtn = document.querySelector(".categoryBtn")
+            let createProductBtn = document.querySelector("#createProduct")
             let infoUpdateModal = document.querySelector(".update-modal")
+            let yesDeleteBtn = document.querySelector(".deleteChanges")
+            let uploadMoreImagesBtn = document.querySelector(".moreImagesBtn")
             let imageUpdateModal = document.querySelector(".update-image-modal")
+            let createCategoryBtn = document.querySelector(".createCategory")
+            let loadingModal = document.querySelector(".loading-modal")
+            let errorModal = document.querySelector(".error-modal")
+            let successModal = document.querySelector(".success-modal")
             let newCategoryModal = document.querySelector(".newCategory-modal")
             let warningModal = document.querySelector(".warning-modal")
             let newProduct = document.querySelectorAll(".newProduct")
             let createModal = document.querySelector(".create-modal")
+            const error_div = document.querySelector(".error_div");
+            const done_div = document.querySelector(".done_div");
+            let section = "kids"
+            let productId
+            let imageId
 
+
+            // Check for the info tin the form for empty ones
+            function checkEmptyForm(name, quantity){
+                let changes = 2
+                let allInput = document.forms[`${name}`].querySelectorAll(".form-control")
+
+                for(input of allInput) {
+                    if(input.value === "" && quantity === 1){
+                        console.log("Should Exit")
+                        return false
+                    }
+
+                    else if((input.value != "" && quantity === 0) || (input.value != "" && quantity === 1) ){
+                        console.log("One Change Recorded")
+                        changes += 1
+                    }
+                }
+
+                if(changes != 2){
+                    return true
+                }
+
+                else{
+                    return false
+                }
+            }
+
+            // For All the X button on any modal
             closeModal.forEach(btn => {
                 btn.addEventListener("click", () => {
                     btn.parentElement.classList.toggle("open-modal")
@@ -51,37 +92,453 @@ var tabbers = tabbers || (function() {
                 })
             })
 
+            // For every Update Info button
             updateInfoBtn.forEach(btn => {
                 btn.addEventListener("click", () => {
+                    productId = btn.getAttribute("productId")
                     infoUpdateModal.classList.toggle("open-modal")
                 })
             })
 
+            // For every update image button
             updateImageBtn.forEach(btn => {
                 btn.addEventListener("click", () => {
+                    productId = btn.getAttribute("productId")
                     imageUpdateModal.classList.toggle("open-modal")
                     imageUpdateModal.classList.toggle("row")
 
                 })
             })
 
+            // For all the delete product button
             deleteBtn.forEach(btn => {
                 btn.addEventListener("click", () => {
                     warningModal.classList.toggle("open-modal")
+                    productId = btn.getAttribute("productId")
+
+                    if(btn.getAttribute("imageId")){
+                        imageId = btn.getAttribute("imageId")
+                        console.log(imageId)
+                    }
+                    else{
+                        imageId = null
+                        console.log(imageId)
+                    }
 
                 })
             })
 
+            // Create new Catergory button 
             categoryBtn.addEventListener("click", () => {
+
                 newCategoryModal.classList.toggle("open-modal")
 
             })
 
+            // Create New Category
+            createCategoryBtn.addEventListener("click", () => {
+                let result = checkEmptyForm("Category", 1)
+                if(result){
+
+                    new_category()
+                }
+            })
+
+            // For all the add new product button
             newProduct.forEach(btn => {
                 btn.addEventListener("click", () => {
+                    section = btn.getAttribute("section")
+                    console.log(section)
                     createModal.classList.toggle("open-modal")
                 })
             })
+
+            // Click Submit button for creating new Product
+            createProductBtn.addEventListener("click", () => {
+                let result = (checkEmptyForm("Create", 1))
+                console.log(result)
+                if(result){
+                    add_product_function()
+                }
+            })
+
+            // Click Submit button for updating product info
+            sendUpdateInfo.addEventListener("click", () => {
+                let result = checkEmptyForm("UpdateInfo", 0)
+                console.log(result) 
+                if(result){
+                    update_product_info()
+                }
+            })
+
+            // Click the Yes button on the confirmation modal
+            yesDeleteBtn.addEventListener("click", () => {
+                warningModal.classList.toggle("open-modal")
+                if(imageId){
+                    console.log("Delete Images")
+                    delete_image()
+                }
+
+                else{
+                    console.log("Delete Product")
+                    delete_product()
+                }
+            })
+
+            //Click the upload button to add more images to existing product
+            uploadMoreImagesBtn.addEventListener("click", () => {
+                let result = (checkEmptyForm("moreImages", 1))
+                if(result){
+                    more_images_for_product()
+                }
+
+
+            })
+
+            // -----------------
+            // Functions for CRUD
+            // -----------------
+            
+
+            // Add New category
+            function new_category(){
+                const data = new FormData()
+
+                data["category"] = document.querySelector("#product_section").value.trim()
+                data["description"] = document.getElementById("new_category_name").value.trim()
+
+                console.log(data)
+                loadingModal.classList.toggle("open-modal")
+
+                        fetch("/admin/newCategory", {
+                            method: "post",
+                            credentials: "include",
+                            body: data
+                        })
+                        .then(response => {
+                            response.text()
+                                .then(data => {
+                                    loadingModal.classList.toggle("open-modal")
+                                    if (data === "done") {
+                                        done_div.querySelector("p").innerText = `Category Added`
+                                        successModal.classList.add("open-modal")
+                                        setTimeout(() => {
+                                            successModal.classList.remove("open-modal")
+                                        }, 5000);
+                                        console.log("done:  broo")
+                                    } else {
+                                        error_div.querySelector("p").innerText = `An Error Ocurred`
+                                        errorModal.classList.add("open-modal")
+                                        setTimeout(() => {
+                                            errorModal.classList.remove("open-modal")
+                                        }, 5000);
+                                        console.log("ErRoR:   ", data)
+                                    }
+                                })
+                        })
+            }
+
+            // Upload More Images for existing products
+            function more_images_for_product(){
+                
+                const fileList = document.querySelector(".product_update_images").files;
+                const fileList_input = document.querySelector(".product_update_images");
+                let check = true
+
+                console.log(fileList)
+                console.log(fileList_input)
+
+                if (fileList.length > 3) {
+                    error_div.querySelector("p").innerText = `Please Choose only 3 images`
+                    errorModal.classList.add("open-modal")
+                    setTimeout(() => {
+                        errorModal.classList.remove("open-modal")
+                    }, 5000);
+                }
+
+                else {
+                    for (file of fileList) {
+
+                        // Check for the image file types to prevent sending wrong file types
+                        console.log(file.type, "type")
+                        if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png' || file.type === 'image/webp') {
+            
+                        } else {
+                            check = false
+                            error_div.querySelector("p").innerText = `Only image file are allowed`
+                            error_div.classList.add("open-modal")
+                            setTimeout(() => {
+                                error_div.classList.remove("open-modal")
+                            }, 5000);
+                        }
+            
+                    }
+    
+                    // Include the images to the form data
+                    if(check){
+
+                        const data = new FormData();
+                        for (let i = 0; i < fileList_input.files.length; i++) {
+                            data.append('filess', fileList_input.files[i]);
+                        } 
+    
+                        data.append("Product Id", productId)
+                        data.append("Section", section)
+
+                        for (key of data.keys()) {
+                            console.log("keyss: ", key)
+                        }
+
+                        for (key of data.values()) {
+                            console.log("value: ", key)
+                        }
+
+                        loadingModal.classList.toggle("open-modal")
+
+                        fetch("/admin/moreImages", {
+                            method: "post",
+                            credentials: "include",
+                            body: data
+                        })
+                        .then(response => {
+                            response.text()
+                                .then(data => {
+                                    loadingModal.classList.toggle("open-modal")
+                                    if (data === "done") {
+                                        done_div.querySelector("p").innerText = `Images Added`
+                                        successModal.classList.add("open-modal")
+                                        setTimeout(() => {
+                                            successModal.classList.remove("open-modal")
+                                        }, 5000);
+                                        console.log("done:  broo")
+                                    } else {
+                                        error_div.querySelector("p").innerText = `An Error Ocurred`
+                                        errorModal.classList.add("open-modal")
+                                        setTimeout(() => {
+                                            errorModal.classList.remove("open-modal")
+                                        }, 5000);
+                                        console.log("ErRoR:   ", data)
+                                    }
+                                })
+                        })
+
+                    }
+                }
+            }
+
+            // Delete Image
+            function delete_image(){
+                const data = new FormData();
+
+                data["Product Id"] = productId
+                data["Image Id"] = imageId
+
+                loadingModal.classList.toggle("open-modal")
+
+                fetch(`/admin/deleteImage`, {
+                    method: "post",
+                    credentials: "include",
+                    body: data
+                })
+                .then(response => {
+                    response.text()
+                        .then(data => {
+                            loadingModal.classList.toggle("open-modal")
+                            if (data === "done") {
+                                done_div.querySelector("p").innerText = `Image Deleted`
+                                successModal.classList.add("open-modal")
+                                setTimeout(() => {
+                                    successModal.classList.remove("open-modal")
+                                }, 5000);
+                                console.log("done:  broo")
+                            } else {
+                                error_div.querySelector("p").innerText = `An Error Ocurred`
+                                errorModal.classList.add("open-modal")
+                                setTimeout(() => {
+                                    errorModal.classList.remove("open-modal")
+                                }, 5000);
+                                console.log("ErRoR:   ", data)
+                            }
+                        })
+                })
+
+            }
+
+            // Delete Product
+            function delete_product(){
+                const data = new FormData();
+
+                data["Product Id"] = productId
+
+                loadingModal.classList.toggle("open-modal")
+
+                fetch(`/admin/deleteProduct`, {
+                    method: "post",
+                    credentials: "include",
+                    body: data
+                })
+                .then(response => {
+                    response.text()
+                        .then(data => {
+                            loadingModal.classList.toggle("open-modal")
+                            if (data === "done") {
+                                done_div.querySelector("p").innerText = `Product Deleted`
+                                successModal.classList.add("open-modal")
+                                setTimeout(() => {
+                                    successModal.classList.remove("open-modal")
+                                }, 5000);
+                                console.log("done:  broo")
+                            } else {
+                                error_div.querySelector("p").innerText = `An Error Ocurred`
+                                errorModal.classList.add("open-modal")
+                                setTimeout(() => {
+                                    errorModal.classList.remove("open-modal")
+                                }, 5000);
+                                console.log("ErRoR:   ", data)
+                            }
+                        })
+                })
+
+            }
+
+            // Update Product Info
+            function update_product_info(){
+                const data = new FormData();
+
+                data["Product Id"] = productId
+                data['Name'] = document.getElementById("product_name_updated").value.trim()
+                data['Product Size'] = document.getElementById("productSize_updated").value.trim()
+                data["Price"] = document.getElementById("product_price_updated").value.trim()
+                data["Slashed Price"] = document.getElementById("slashed_price_updated").value.trim()
+                data["category"] = document.getElementById("category_updated").value.trim()
+                data["description"] =  document.getElementById("product_description_updated").value.trim()
+
+                console.log(data)
+
+                loadingModal.classList.toggle("open-modal")
+
+                fetch(`/admin/update/345678998765/8hd72/${productId}`, {
+                    method: "post",
+                    credentials: "include",
+                    body: data
+                })
+
+
+                .then(response => {
+                    response.text()
+                        .then(data => {
+                            loadingModal.classList.toggle("open-modal")
+                            if (data === "done") {
+                                done_div.querySelector("p").innerText = `Changes Saved`
+                                successModal.classList.add("open-modal")
+                                setTimeout(() => {
+                                    successModal.classList.remove("open-modal")
+                                }, 5000);
+                                console.log("done:  broo")
+                            } else {
+                                error_div.querySelector("p").innerText = `An Error Ocurred`
+                                errorModal.classList.add("open-modal")
+                                setTimeout(() => {
+                                    errorModal.classList.remove("open-modal")
+                                }, 5000);
+                                console.log("ErRoR:   ", data)
+                            }
+                        })
+                })
+
+                
+            }
+
+            // Create a new product
+            function add_product_function(){
+                const fileList = document.querySelector(".product_image").files;
+                const fileList_input = document.querySelector(".product_image");
+                let check = true
+                
+                // Check if the number of images is more than 6
+                if (fileList.length > 6) {
+                    error_div.querySelector("p").innerText = `Please Choose only 6 images`
+                    errorModal.classList.add("open-modal")
+                    setTimeout(() => {
+                        errorModal.classList.remove("open-modal")
+                    }, 5000);
+                }
+
+                else {
+                    for (file of fileList) {
+
+                        // Check for the image file types to prevent sending wrong file types
+                        console.log(file.type, "type")
+                        if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png' || file.type === 'image/webp') {
+            
+                        } else {
+                            check = false
+                            error_div.querySelector("p").innerText = `Only image file are allowed`
+                            error_div.classList.add("open-modal")
+                            setTimeout(() => {
+                                error_div.classList.remove("open-modal")
+                            }, 5000);
+                        }
+            
+                    }
+    
+                    // Include the images to the form data
+                    if(check){
+                        const data = new FormData();
+                        for (let i = 0; i < fileList_input.files.length; i++) {
+                            data.append('filess', fileList_input.files[i]);
+                        } 
+
+                        data['NamE'] = document.getElementById("product_name").value.trim()
+                        data['Product Size'] = document.getElementById("productSize").value.trim()
+                        data["Price"] = document.getElementById("product_price").value.trim()
+                        data["Slashed Price"] = document.getElementById("slashed_price").value.trim()
+                        data["category"] = document.getElementById("category").value.trim()
+                        data["description"] = document.getElementById("product_description").value.trim()
+                        data["Section"] = section
+
+                        for (key of data.keys()) {
+                            console.log("keyss: ", key)
+                        }
+
+                        for (key of data.values()) {
+                            console.log("value: ", key)
+                        }
+
+                        loadingModal.classList.toggle("open-modal")
+
+                        fetch("/admin/product/iudi7486GFY", {
+                            method: "post",
+                            credentials: "include",
+                            body: data
+                        })
+                        .then(response => {
+                            response.text()
+                                .then(data => {
+                                    loadingModal.classList.toggle("open-modal")
+                                    if (data === "done") {
+                                        done_div.querySelector("p").innerText = `New Product Added`
+                                        successModal.classList.add("open-modal")
+                                        setTimeout(() => {
+                                            successModal.classList.remove("open-modal")
+                                        }, 5000);
+                                        console.log("done:  broo")
+                                    } else {
+                                        error_div.querySelector("p").innerText = `An Error Ocurred`
+                                        errorModal.classList.add("open-modal")
+                                        setTimeout(() => {
+                                            errorModal.classList.remove("open-modal")
+                                        }, 5000);
+                                        console.log("ErRoR:   ", data)
+                                    }
+                                })
+                        })
+
+                    }
+                }
+
+                
+            }
 
 
             // carousel js starts here 
