@@ -204,8 +204,8 @@ var tabbers = tabbers || (function() {
             function new_category(){
                 const data = new FormData()
 
-                data["category"] = document.querySelector("#product_section").value.trim()
-                data["description"] = document.getElementById("new_category_name").value.trim()
+                data["section"] = document.querySelector("#product_section").value.trim()
+                data["new_category"] = document.getElementById("new_category_name").value.trim()
 
                 console.log(data)
                 loadingModal.classList.toggle("open-modal")
