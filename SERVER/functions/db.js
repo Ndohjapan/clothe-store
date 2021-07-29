@@ -4,7 +4,7 @@ const path = require("path");
 class fireStoreClient {
     constructor() {
         this.fireStore = new FireStore({
-            projectId: "nwokeji-global-interbiz",
+            projectId: "learning-317603",
             keyFilename: path.join(__dirname, "./service.json")
         });
     };
@@ -32,6 +32,10 @@ class fireStoreClient {
     }
     async getOrderBy(colname, query) {
         const docref = await this.fireStore.collection(colname).orderBy(query).get();
+        return docref
+    }
+    async get_with_limit(colname, query) {
+        const docref = await this.fireStore.collection(colname).orderBy(query).limit(5).get();
         return docref
     }
     async delete(colname, id) {
