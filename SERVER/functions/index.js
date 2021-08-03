@@ -19,7 +19,8 @@ app.use(cookieParser())
 app.disable("x-powered-by")
 
 
-const admin = require("./routes/admin")
+const admin = require("./routes/admin");
+const router = require("./routes/admin");
 
 app.use("/admin", admin)
 
@@ -33,7 +34,98 @@ app.get("/", async(req, res) => {
     let Female = await fireStoreClient.get_with_limit("Products", "root_category", "Female")
     let Material = await fireStoreClient.get_with_limit("Products", "root_category", "Material")
 
-    res.render("index.ejs", { Kids, Female, Material })
+    console.log("KIDS: \n", Kids, '\n\n\n')
+    console.log("FEMALE: \n", Female, '\n\n\n')
+    console.log("MATERIAL: \n", Material, '\n\n\n')
+    res.send(Kids, Female, Material)
+        // res.render("index.ejs", { Kids, Female, Material })
+})
+
+app.get("/kids", async(req, res) => {
+    const products_list = []
+    let categories_list = []
+
+    let products = await fireStoreClient.array_contains("Products", "root_category", "Kids")
+    products.forEach((doc) => {
+        data = doc.data()
+        data.id = doc.id
+        products_list.push(data)
+    });
+
+    let categories = await fireStoreClient.array_contains("Category", "section", "Kids")
+    categories.forEach((doc) => {
+        data = doc.data()
+        data.id = doc.id
+        categories_list.push(data)
+    });
+
+    console.log("products_list: \n", products_list, '\n\n\n')
+    console.log("categories_list: \n", categories_list, '\n\n\n')
+    res.send(products_list.concat(categories_list))
+})
+
+app.get("/Female", async(req, res) => {
+    const products_list = []
+    let categories_list = []
+
+    let products = await fireStoreClient.array_contains("Products", "root_category", "Female")
+    products.forEach((doc) => {
+        data = doc.data()
+        data.id = doc.id
+        products_list.push(data)
+    });
+
+    let categories = await fireStoreClient.array_contains("Category", "section", "Female")
+    categories.forEach((doc) => {
+        data = doc.data()
+        data.id = doc.id
+        categories_list.push(data)
+    });
+
+    console.log("products_list: \n", products_list, '\n\n\n')
+    console.log("categories_list: \n", categories_list, '\n\n\n')
+    res.send(products_list.concat(categories_list))
+})
+
+app.get("/Material", async(req, res) => {
+    const products_list = []
+    let categories_list = []
+
+    let products = await fireStoreClient.array_contains("Products", "root_category", "Material")
+    products.forEach((doc) => {
+        data = doc.data()
+        data.id = doc.id
+        products_list.push(data)
+    });
+
+    let categories = await fireStoreClient.array_contains("Category", "section", "Material")
+    categories.forEach((doc) => {
+        data = doc.data()
+        data.id = doc.id
+        categories_list.push(data)
+    });
+
+    console.log("products_list: \n", products_list, '\n\n\n')
+    console.log("categories_list: \n", categories_list, '\n\n\n')
+    res.send(products_list.concat(categories_list))
+})
+
+app.post("/cart", async(req, res) => {
+    const body = JSON.parse(req.body);
+    console.log("body: \n\n", body)
+    const products = []
+    let item
+
+    for await (let product of body) {
+        console.log("abput sending product from firrestore")
+        let product_ = await fireStoreClient.findById("Products", product.id)
+        item = product_.data()
+        item.id = product_.id
+        products.push(item)
+    };
+
+    console.log("\n\nproducts", products)
+    res.send(products)
 })
 
 app.get("/detail/:id", async(req, res) => {
@@ -91,24 +183,6 @@ app.get("/search/:query/:value", async(req, res) => {
 
 app.get("/cartitems", async(req, res) => {
     res.render("cart")
-})
-
-app.post("/cart", async(req, res) => {
-    const body = JSON.parse(req.body);
-    console.log("body: \n\n", body)
-    const products = []
-    let item
-
-    for await (let product of body) {
-        console.log("abput sending product from firrestore")
-        let product_ = await fireStoreClient.findById("Products", product.id)
-        item = product_.data()
-        item.id = product_.id
-        products.push(item)
-    };
-
-    console.log("\n\nproducts", products)
-    res.send(products)
 })
 
 app.post("/order/add", async(req, res) => {

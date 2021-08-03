@@ -35,8 +35,15 @@ class fireStoreClient {
         return docref
     }
     async get_with_limit(colname, query) {
+        let data;
+        let products = [];
         const docref = await this.fireStore.collection(colname).orderBy(query).limit(5).get();
-        return docref
+        docref.forEach((doc) => {
+            data = doc.data()
+            data.id = doc.id
+            products.push(data)
+        });
+        return products
     }
     async delete(colname, id) {
         const doc = await this.fireStore.collection(colname).doc(id).delete();
