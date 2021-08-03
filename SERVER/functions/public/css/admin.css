@@ -1,95 +1,140 @@
 ﻿/* this css is for the demo pages, not for the Responsive Tabs. Don't need to include it into your production pages. */
 
-body.bd1 {background:#F6F9FC; font:normal 0.85em arial;}
-body.bd1 a {color:#09F;}
-img {border:0;}
+body.bd1 {
+    background: #F6F9FC;
+    font: normal 0.85em arial;
+}
 
-.js-center{
+body.bd1 a {
+    color: #09F;
+}
+
+img {
+    border: 0;
+}
+
+.js-center {
     display: flex;
     justify-content: center;
 }
-#demopage 
-{
-    padding:50px 0;  
-    margin:0 auto; /* This makes the page center aligned */
-    background-color:White;
-    border:1px solid #EEE; border-radius:2px; box-shadow:0 0 1px #CCC;
-    position: relative;
-}
-#demopage h1 {text-align:center;font:bold 24px Georgia;}
-#demopage h2 {margin:5px 0;font:bold 20px Georgia;}
-.code
-{
-    border: dashed 1px #BCBCCB; padding:8px 12px; background-color: #F3F3F9; font-family:"Courier New", Georgia;
-    font-size:11px; margin:6px 0;overflow:auto; 
-}
 
-p#menu1 {text-align:center;margin-bottom:50px;}
-p#menu1 a 
-{
-    display:inline-block; *display:inline; 
-    padding:2px 6px; margin:0 8px;
-    border:1px dotted #CCC;
-    background:#EEE;
-    text-decoration:none;
-    color:#888;
-}
-p#menu1 a.active 
-{
-    background-color:white;    
-}
-
-.small {font-size:small;}
-
-.container1{
+#demopage {
+    padding: 50px 0;
+    margin: 0 auto;
+    /* This makes the page center aligned */
+    background-color: White;
+    border: 1px solid #EEE;
+    border-radius: 2px;
+    box-shadow: 0 0 1px #CCC;
     position: relative;
 }
 
-.update-modal, .create-modal, .update-image-modal, .warning-modal, .newCategory-modal, .loading-modal, .error-modal, .success-modal{
+#demopage h1 {
+    text-align: center;
+    font: bold 24px Georgia;
+}
+
+#demopage h2 {
+    margin: 5px 0;
+    font: bold 20px Georgia;
+}
+
+.code {
+    border: dashed 1px #BCBCCB;
+    padding: 8px 12px;
+    background-color: #F3F3F9;
+    font-family: "Courier New", Georgia;
+    font-size: 11px;
+    margin: 6px 0;
+    overflow: auto;
+}
+
+p#menu1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+p#menu1 a {
+    display: inline-block;
+    *display: inline;
+    padding: 2px 6px;
+    margin: 0 8px;
+    border: 1px dotted #CCC;
+    background: #EEE;
+    text-decoration: none;
+    color: #888;
+}
+
+p#menu1 a.active {
+    background-color: white;
+}
+
+.small {
+    font-size: small;
+}
+
+.container1 {
+    position: relative;
+}
+
+.text-correction {
+    white-space: break-spaces !important;
+}
+
+.update-modal,
+.create-modal,
+.update-image-modal,
+.warning-modal,
+.newCategory-modal,
+.loading-modal,
+.error-modal,
+.success-modal {
     position: fixed;
     width: 100%;
     height: 100%;
     background: rgb(0, 0, 0, 0.5);
     z-index: 99999999999;
     top: 0;
-	display: none;
+    display: none;
     transition: display ease-in-out 1s;
 }
 
-.update-image-modal{
+.update-image-modal {
     padding: 5rem;
 }
 
-.open-modal{
+.open-modal {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.close-modal{
+.close-modal {
     position: absolute;
     top: 2rem;
     right: 2rem;
     z-index: 2;
 }
 
-.submitBtn{
+.submitBtn {
     display: flex;
     justify-content: center;
 }
 
-.submitBtn input:focus{
+.submitBtn input:focus {
     outline: none;
     border: none;
 }
 
-.newProduct{
+.newProduct {
     position: absolute;
     z-index: 2;
 }
 
+
 /* For the update form */
-.contact-form{
+
+.contact-form {
     background: #fff;
     margin-top: 10%;
     margin-bottom: 5%;
@@ -97,25 +142,31 @@ p#menu1 a.active
     border-radius: 1.5rem;
     box-shadow: 4px 5px 7px rgb(0 0 0 / 60%), inset 4px -4px 15px 1px rgb(0 0 0 / 50%);
 }
-.contact-form .form-control{
-    border-radius:1rem;
+
+.contact-form .form-control {
+    border-radius: 1rem;
 }
-.contact-image{
+
+.contact-image {
     text-align: center;
 }
-.contact-image img{
+
+.contact-image img {
     border-radius: 6rem;
     width: 11%;
     margin-top: -3%;
     transform: rotate(29deg);
 }
-.contact-form form{
+
+.contact-form form {
     padding: 2rem;
 }
-.contact-form form .row{
+
+.contact-form form .row {
     margin-bottom: -7%;
 }
-.contact-form h3{
+
+.contact-form h3 {
     margin-bottom: 1rem;
     text-align: center;
     color: black;
@@ -123,6 +174,7 @@ p#menu1 a.active
     font-weight: bolder;
     font-size: 2.5rem;
 }
+
 .contact-form .btnContact {
     width: 50%;
     border: none;
@@ -134,8 +186,8 @@ p#menu1 a.active
     cursor: pointer;
     padding: 1rem;
 }
-.btnContactSubmit
-{
+
+.btnContactSubmit {
     width: 50%;
     border-radius: 1rem;
     padding: 1.5%;
@@ -145,62 +197,66 @@ p#menu1 a.active
     cursor: pointer;
 }
 
+
 /* Image slider */
-.row{
+
+.row {
     margin: 0 !important;
     padding: 0 !important;
 }
 
-.other-images{
-    background-color: #007bff96!important
+.other-images {
+    background-color: #007bff96!important;
+    display: flex !important;
 }
 
-.more-images-form-container{
+.more-images-form-container {
     padding: 1rem;
 }
 
-.more-images{
+.more-images {
     background: white;
     border-radius: 1rem;
     padding: 1rem;
     box-shadow: 4px 5px 7px rgb(0 0 0 / 60%), inset 4px -4px 15px 1px rgb(0 0 0 / 50%);
 }
 
-.owl-carousel .owl-item img{
+.owl-carousel .owl-item img {
     width: 50% !important;
 }
 
-.row.item .col-12{
+.row.item .col-12 {
     display: flex;
     justify-content: center;
     margin: 1rem;
 }
 
-.row.item{
+.row.item {
     display: flex;
     justify-content: center;
 }
 
-/* Error Div */
-.error_div{
-    box-shadow: 4px 5px 7px rgb(0 0 0 / 60%), inset 4px -4px 15px 1px rgb(0 0 0 / 50%);
 
+/* Error Div */
+
+.error_div {
+    box-shadow: 4px 5px 7px rgb(0 0 0 / 60%), inset 4px -4px 15px 1px rgb(0 0 0 / 50%);
 }
 
-@media(max-width: 478px){
-    .warning-modal-container{
+@media(max-width: 478px) {
+    .warning-modal-container {
         width: 90% !important;
     }
 }
 
-@media(min-width: 900px){
-    .warning-modal-container{
+@media(min-width: 900px) {
+    .warning-modal-container {
         width: 70% !important;
     }
 }
 
-@media(min-width: 991px){
-    .warning-modal-container{
+@media(min-width: 991px) {
+    .warning-modal-container {
         width: 50% !important;
     }
 }
