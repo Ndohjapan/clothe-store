@@ -340,6 +340,7 @@ function getProductInfo(){
 
                 // Check if there is a response from the server
                 if (Object.keys(data) > 0) {
+                    
                     // Close the loading modal
                     loadingModal.classList.toggle("toggle-loading-modal")
 
