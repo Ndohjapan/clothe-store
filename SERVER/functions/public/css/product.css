@@ -1,0 +1,31 @@
+/* product-page search bar */
+
+* {
+    outline: none;
+}
+
+.advanced-search {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: -3rem !important;
+}
+
+.advanced-search .input-group {
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+}
+
+.advanced-search .input-group input {
+    width: 70%;
+    padding: .5rem;
+}
+
+.advanced-search .input-group button {
+    width: 50px;
+    background-color: #e7ab3c;
+    color: #fff;
+    border: none;
+    outline: none;
+}

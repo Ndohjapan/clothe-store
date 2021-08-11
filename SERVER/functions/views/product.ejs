@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="StacyUk Couture">
+    <meta name="keywords" content="online tailor, online seamstress, buy cloth online, sew cloth online">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StacyUk Couture | <%= section %> Products </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/elegant-icons.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/themify-icons.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/jquery-ui.min.css">
+    <link rel="stylesheet" href="./css/A.fonts,,_icomoon,,_style.css+css,,_bootstrap.min.css+css,,_magnific-popup.css+css,,_jquery-ui.css+css,,_owl.carousel.min.css+css,,_owl.theme.default.min.css+css,,_aos.css">
+    <link rel="stylesheet" href="./css/product.css">
+
+</head>
+
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <%- include('./header/header'); -%>
+
+
+    <!-- Search Bar  -->
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="advanced-search">
+                <form action="#" class="input-group">
+                    <input type="text" placeholder="What do you need?">
+                    <button type="button"><i class="ti-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Section -->
+
+    <section class="product-shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-8 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Categories</h4>
+                        <ul class="filter-catagories">
+                            <% categories_list.forEach(element => { %>
+
+                                <li><a href="#"><%= element.new_category %> </a></li>
+                            
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="product-show-option">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7">
+                                <div class="select-option">
+                                    <h3 style="color: #000;">All <%= section %> Products</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 text-right">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product List -->
+                    <div class="product-list">
+                        <div class="row">
+                            <% products_list.forEach(element => { %>
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="pi-pic">
+                                            <img src="<%= element.images[0].secure_url %> " class="product-card"  alt="" product-id="<%= element.id %> " >
+        
+                                            <% if (element.isAvailable === 'yes') { %>
+                                                <div class="sale">Buy Now</div>
+                                            <% } else { %>
+                                                <div class="sale bg-danger">Place Order</div>
+                                            <% } %> 
+                                                
+                                            <div class="icon">
+                                                <i class="fa fa-heart-o"></i>
+                                            </div>
+                                            <ul>
+                                                <li class="w-icon active product-card" product-id="<%= element.id %> " ><a href="#" product-id="<%= element.id %> " ><i class="fa fa-shopping-bag"></i></a></li>
+                                                <li class="quick-view product-card" product-id="<%= element.id %> " ><a href="#" product-id="<%= element.id %> " >+ View</a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                        <div class="pi-text">
+                                            <div class="catagory-name"><%= element.category %></div>
+                                            <a href="#" product-id="<%= element.id %> " class="product-card" >
+                                                <h5><%= element.name %> </h5>
+                                            </a>
+                                            <div class="product-price product-card" product-id="<%= element.id %> ">
+                                                NGN <%= element.price %> 
+                                                <span>NGN <%= element.slashed_price %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+    <%- include('./header/footer'); -%>
+
+
+    <!-- Footer End -->
+
+    <!-- Product card -->
+    <div class="product-card-modal">
+        <div class="container mt-5 mb-5" id="product-page-card">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-10">
+                    <div class="row p-2 bg-white border rounded">
+                        <div class="col-md-3 mt-1 modal-image">
+                            <img class="img-fluid img-responsive rounded product-image" src="img/products/man-3.jpg">
+                        </div>
+                        <div class="col-md-6 mt-1">
+                            <h5>Quant olap shirts</h5>
+                            <div class="d-flex flex-row">
+                                <div class="ratings mr-2"><i class="fa fa-star text-pink"></i><i class="fa fa-star text-pink"></i><i class="fa fa-star text-pink"></i><i class="fa fa-star text-pink"></i></div><span class="text-pink">310</span>
+                            </div>
+                            <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                            <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                            <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                        </div>
+                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                            <div class="d-flex flex-row align-items-center">
+                                <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                            </div>
+                            <h6 class="text-success">Free shipping</h6>
+                            <div class="d-flex flex-column mt-4"  style="     flex-direction: column;">
+                                <button class="btn btn-primary btn-sm" type="button">Add to Bag <span class="icon_bag_alt"></span> </button>
+                                <button class="btn btn-sm mt-2 close-modal" type="button">Close <i class="fa fa-times"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Image Carousel -->
+    <div class="product-card-modal">
+        
+        <button class="btn btn-sm mt-2 close-modal close-image-modal" type="button">Close <i class="fa fa-times"></i> </button>
+
+        <div class="product-slider product-card-slider owl-carousel container">
+            <div class="  testimonial-section-card  row">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/man-3.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+                
+            </div>
+            <div class="  testimonial-section-card  row">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/man-2.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+                
+            </div>
+            <div class="  row testimonial-section-card">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/man-4.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+                
+            </div>
+            <div class="  row testimonial-section-card">
+                <div class=" col-12 pl-center">
+                    <img src="./img/products/women-3.jpg" alt="" width="50%" class="img-fluid">
+                </div>
+            </div>
+            
+            
+        </div>
+            
+    </div>
+
+    <!-- Script inclusion -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.countdown.min.js%2bjquery.nice-select.min.js%2bjquery.zoom.min.js%2bjquery.dd.min.js%2bjquery.slicknav.js.pagespeed.jc.pQbQnv7jXZ.js"></script>
+
+    <script src="./js/jquery-ui.js%2bpopper.min.js.pagespeed.jc.ZsdIG06sXH.js"></script>
+    <script>
+        eval(mod_pagespeed_43XHchMnCE);
+    </script>
+    <script>
+        eval(mod_pagespeed_s5xi3Xpezc);
+    </script>
+    <script src="./js/owl.carousel.min.js%2bjquery.magnific-popup.min.js%2baos.js%2bmain.js.pagespeed.jc.BHjmvK4Jem.js"></script>
+
+    <script>
+        eval(mod_pagespeed_s2yWe5UonU);
+    </script>
+    <script>
+        eval(mod_pagespeed_5Oi900R5Mr);
+    </script>
+    <script>
+        eval(mod_pagespeed_y24CbgPGh9);
+    </script>
+    <script>
+        eval(mod_pagespeed_2WJFdZORSP);
+    </script>
+    <script>
+        eval(mod_pagespeed_gwflC3jfEs);
+    </script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || []; 
+        function gtag() {
+            dataLayer.push(arguments);
+        } 
+        gtag('js', new Date());
+
+         
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer src="../../../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"670690a36a61c4e8","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
+
+
+</body>
+
+</html>

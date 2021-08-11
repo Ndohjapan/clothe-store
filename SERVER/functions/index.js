@@ -30,14 +30,15 @@ app.get("/check", (req, res) => {
 
 app.get("/", async(req, res) => {
 
-    let Kids = await fireStoreClient.get_with_limit("Products", "root_category", "Kids")
     let Female = await fireStoreClient.get_with_limit("Products", "root_category", "Female")
+    let Kids = await fireStoreClient.get_with_limit("Products", "root_category", "Kids")
     let Material = await fireStoreClient.get_with_limit("Products", "root_category", "Material")
 
     console.log("KIDS: \n", Kids, '\n\n\n')
     console.log("FEMALE: \n", Female, '\n\n\n')
     console.log("MATERIAL: \n", Material, '\n\n\n')
-    res.send(Kids, Female, Material)
+
+    res.render("index", {Kids, Female, Material})
         // res.render("index.ejs", { Kids, Female, Material })
 })
 
@@ -61,7 +62,11 @@ app.get("/kids", async(req, res) => {
 
     console.log("products_list: \n", products_list, '\n\n\n')
     console.log("categories_list: \n", categories_list, '\n\n\n')
-    res.send(products_list.concat(categories_list))
+
+    const section = "Kids"
+
+    res.render("product", {products_list, categories_list, section})
+
 })
 
 app.get("/Female", async(req, res) => {
@@ -84,7 +89,11 @@ app.get("/Female", async(req, res) => {
 
     console.log("products_list: \n", products_list, '\n\n\n')
     console.log("categories_list: \n", categories_list, '\n\n\n')
-    res.send(products_list.concat(categories_list))
+
+    const section = "Women's"
+
+    res.render("product", {products_list, categories_list, section})
+
 })
 
 app.get("/Material", async(req, res) => {
@@ -107,10 +116,14 @@ app.get("/Material", async(req, res) => {
 
     console.log("products_list: \n", products_list, '\n\n\n')
     console.log("categories_list: \n", categories_list, '\n\n\n')
-    res.send(products_list.concat(categories_list))
+
+    const section = "Materials / Applique"
+
+    res.render("product", {products_list, categories_list, section})
+
 })
 
-app.post("/cart", async(req, res) => {
+app.post("/cartProduct", async(req, res) => {
     const body = JSON.parse(req.body);
     console.log("body: \n\n", body)
     const products = []
@@ -128,6 +141,14 @@ app.post("/cart", async(req, res) => {
     res.send(products)
 })
 
+app.get("/cart", async(req, res) => {
+    res.render("cart")
+})
+
+app.get("/contact", async(req, res) => {
+    res.render("contact")
+})
+
 app.get("/detail/:id", async(req, res) => {
     const id = req.params.id
     let get_product = async() => {
@@ -139,7 +160,9 @@ app.get("/detail/:id", async(req, res) => {
     }
     let product = await get_product();
 
-    return res.render("detail", { product })
+    console.log(product)
+
+    return res.send(product)
 })
 
 app.get("/search/:query/:value", async(req, res) => {
