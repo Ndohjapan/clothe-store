@@ -37,7 +37,9 @@ class fireStoreClient {
     async get_with_limit(colname, query) {
         let data;
         let products = [];
+        console.log(query)
         const docref = await this.fireStore.collection(colname).orderBy(query).limit(5).get();
+        
         docref.forEach((doc) => {
             data = doc.data()
             data.id = doc.id

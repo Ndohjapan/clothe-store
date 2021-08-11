@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+    <meta name="description" content="StacyUk Couture">
+    <meta name="keywords" content="clothe, female clothing, kids clothing, clothing applique, clothing store, online store, nigerian cloth store, owerri online store">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StacyUk Couture | Cart Page</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/cd-themify-icons@0.0.1/index.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/jquery-ui.min.css">
+    <link rel="stylesheet" href="./css/A.fonts,,_icomoon,,_style.css+css,,_bootstrap.min.css+css,,_magnific-popup.css+css,,_jquery-ui.css+css,,_owl.carousel.min.css+css,,_owl.theme.default.min.css+css,,_aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/elegant-icons.css">
+</head>
+<body>
+
+<!-- Social Icon Nav Bar -->
+
+<%- include('./header/header'); -%>
+
+
+
+<div class="site-section" id="cart-page">
+  <div class="container">
+    <div class="row mb-5" style="box-shadow:inset -4px -1px 3px 0px rgb(0 0 0 / 34%);">
+      <form class="col-md-12" method="post">
+        <div class="site-blocks-table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="product-thumbnail">Image</th>
+                <th class="product-name">Product</th>
+                <th class="product-price">Price</th>
+                <th class="product-quantity">Quantity</th>
+                <th class="product-total">Total</th>
+                <th class="product-remove">Remove</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr>
+                <td class="product-thumbnail">
+                  <img src="./img/xcloth_1.jpg.pagespeed.ic.uOqnMqZd85.jpg" alt="Image" class="img-fluid">
+                </td>
+                <td class="product-name">
+                  <h2 class="h5 text-black">Top Up T-Shirt</h2>
+                </td>
+                <td>$49.00</td>
+                <td>
+                  <div class="input-group mb-3" style="max-width: 120px;">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                    </div>
+                    <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                    </div>
+                  </div>
+                </td>
+                <td>$49.00</td>
+                <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+              </tr>
+              <tr>
+                <td class="product-thumbnail">
+                  <img src="./img/children.jpg" alt="Image" class="img-fluid">
+                </td>
+                  <td class="product-name">
+                    <h2 class="h5 text-black">Polo Shirt</h2>
+                  </td>
+                  <td>$49.00</td>
+                  <td>
+                    <div class="input-group mb-3" style="max-width: 120px;">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                      </div>
+                      <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>$49.00</td>
+                  <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-6 row">
+          <div class="col-12">
+              <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
+          </div>
+        </div>
+        <div class="col-12 mt-5">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-md-12 text-right border-bottom mb-5">
+                  <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-6">
+                  <span class="text-black">Total</span>
+                </div>
+                <div class="col-6 text-right">
+                  <strong class="text-black">$230.00</strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 mt-4">
+                  <button class="btn btn-primary btn-lg btn-block" onclick="window.location='checkout.html'"> <i class="fa fa-whatsapp"></i> Proceed To Checkout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer Section -->
+
+  <%- include('./header/footer'); -%>
+
+
+    <!-- Script inclusion -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.countdown.min.js%2bjquery.nice-select.min.js%2bjquery.zoom.min.js%2bjquery.dd.min.js%2bjquery.slicknav.js.pagespeed.jc.pQbQnv7jXZ.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script src="./js/jquery-ui.js%2bpopper.min.js.pagespeed.jc.ZsdIG06sXH.js"></script>
+    <script>
+        eval(mod_pagespeed_43XHchMnCE);
+    </script>
+    <script>
+        eval(mod_pagespeed_s5xi3Xpezc);
+    </script>
+    <script src="./js/owl.carousel.min.js%2bjquery.magnific-popup.min.js%2baos.js%2bmain.js.pagespeed.jc.BHjmvK4Jem.js"></script>
+
+    <script>
+        eval(mod_pagespeed_s2yWe5UonU);
+    </script>
+    <script>
+        eval(mod_pagespeed_5Oi900R5Mr);
+    </script>
+    <script>
+        eval(mod_pagespeed_y24CbgPGh9);
+    </script>
+    <script>
+        eval(mod_pagespeed_2WJFdZORSP);
+    </script>
+    <script>
+        eval(mod_pagespeed_gwflC3jfEs);
+    </script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || []; 
+        function gtag() {
+            dataLayer.push(arguments);
+        } 
+        gtag('js', new Date());
+
+         
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer src="../../../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"670690a36a61c4e8","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
+
+</body>
+
+</html>
