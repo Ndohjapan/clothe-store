@@ -163,7 +163,7 @@ app.get("/detail/:id", async(req, res) => {
 
     console.log(product)
 
-    return res.jaon(product)
+    return res.send(product)
 })
 
 app.get("/search/:query/:value", async(req, res) => {

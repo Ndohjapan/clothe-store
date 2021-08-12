@@ -51,7 +51,7 @@
         loop: true,
         margin: 25,
         nav: true,
-        items: 4,
+        items: 1,
         dots: true,
         navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
         smartSpeed: 1200,
@@ -133,7 +133,7 @@
         loop: false,
         margin: 10,
         nav: true,
-        items: 3,
+        items: 1,
         dots: false,
         navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
         smartSpeed: 1200,
@@ -273,14 +273,12 @@
 let mobileMenuToggle = document.querySelector(".site-menu-toggle")
 let mobileMenu = document.querySelector(".mobile-menu")
 let productModal = document.querySelectorAll(".product-card-modal")
-let imageModal = document.querySelectorAll(".product-card-slider")
-let closeModal = document.querySelector(".close-modal")
-let closeImageModal = document.querySelector(".close-image-modal")
-let quickView = document.querySelectorAll(".quick-view")
 let productCard = document.querySelectorAll(".product-card")
 let loadingModal = document.querySelector(".loading-modal")
+let cartButton = document.querySelectorAll(".cart-button")
 let productId
 let productImages = []
+let imageModal 
 
 mobileMenuToggle.addEventListener("click", () => {
     mobileMenu.classList.toggle("open-menu")
@@ -292,9 +290,6 @@ mobileMenuToggle.addEventListener("click", () => {
     }
 })
 
-closeModal.addEventListener("click", () => {
-    productModal[0].classList.toggle("open-modal")
-})
 
 productCard.forEach(modal => {
     modal.addEventListener("click", () => {
@@ -304,18 +299,14 @@ productCard.forEach(modal => {
     })
 })
 
-quickView.forEach(btn => {
-    // btn.addEventListener("click", () => {
-    //     console.log("I clicked on view")
-    //     viewProduct()
-    // })
-})
 
-
-closeImageModal.addEventListener("click", () =>{
+function closeProductModal(){
     productModal[0].classList.toggle("open-modal")
+}
+
+function closePictureModal(){
     productModal[1].classList.toggle("open-modal")
-})
+}
 
 function viewProduct(){
 
@@ -330,6 +321,8 @@ function viewProduct(){
 
 // Fetch request will return object with info about that product
 function getProductInfo(){
+
+
     fetch(`/detail/${productId}`, {
         method: "get",
         credentials: "include"
@@ -338,8 +331,11 @@ function getProductInfo(){
         response.text()
             .then(data => {
 
+                
+                data = JSON.parse(data)
+
                 // Check if there is a response from the server
-                if (Object.keys(data) > 0) {
+                if (Object.keys(data).length > 6) {
                     
                     // Close the loading modal
                     loadingModal.classList.toggle("toggle-loading-modal")
@@ -357,20 +353,23 @@ function getProductInfo(){
                 } else {
 
                     // If there is an error, then call the function a gain to make the request again
-                    getProductInfo()
+                    console.log("I think something happened")
                 }
             })
     })
 }
 
 function displayProductInfo(data){
+
+    productModal[0].innerHTML = ""
+
     productModal[0].innerHTML = `
         <div class="container mt-5 mb-5">
             <div class="d-flex justify-content-center row">
                 <div class="col-md-10">
                     <div class="row p-2 bg-white border rounded">
                         <div class="col-md-3 mt-1 modal-image">
-                            <img class="img-fluid img-responsive rounded product-image" src="${data.images[0].seure_url}">
+                            <img class="img-fluid img-responsive rounded product-image" src="${data.images[0].secure_url}">
                         </div>
                         <div class="col-md-6 mt-1">
                             <h5>${data.name}</h5>
@@ -405,11 +404,20 @@ function displayProductInfo(data){
 
     modalImage.addEventListener("click", () => {
         
+        console.log("I was clicked")
+
         // Close the product info modal
-        productModal[0].classList.toggle("open-modal")
+        // productModal[0].classList.toggle("open-modal")
 
         displayImageModal()
 
+    })
+
+    // Add event listeners on the close button on the modal
+    let closeModal = document.querySelector(".close-modal")
+
+    closeModal.addEventListener("click", () => {
+        closeProductModal()
     })
 
                     
@@ -418,17 +426,135 @@ function displayProductInfo(data){
 
 function displayImageModal(){
     // Insert all the product images to the image modal
-    for(image of productImages){
 
-        imageModal.innerHTML += `
+    productModal[1].innerHTML = `<button class="btn btn-sm mt-2 close-modal close-image-modal" type="button">Close <i class="fa fa-times"></i> </button>`
+
+    imageModal = `<div class="image-slider product-card-slider owl-carousel container">`
+
+    productImages.forEach(image =>{
+
+        imageModal += `
         <div class="  testimonial-section-card  row">
             <div class=" col-12 pl-center">
                 <img src="${image.secure_url}" alt="" width="50%" class="img-fluid">
             </div>
         </div>
         ` 
-    }
+    })
+
+    imageModal += "</div>"
+
+    productModal[1].innerHTML += imageModal
+
+    $(".image-slider").owlCarousel({
+        loop: true,
+        margin: 25,
+        nav: true,
+        items: 4,
+        dots: true,
+        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            576: {
+                items: 2,
+            },
+            992: {
+                items: 2,
+            },
+            1200: {
+                items: 3,
+            }
+        }
+    });
+
+    let closeImageModal = document.querySelector(".close-image-modal")
+    closeImageModal.addEventListener("click", () =>{
+        closePictureModal()
+    })
 
     // Display the image modal
     productModal[1].classList.toggle("open-modal")
+}
+
+
+// Event listener on the add to cart button
+cartButton.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        changeCardDesign(e)
+    })
+})
+
+
+// This will change the design of the product card to add plus and minus 
+function changeCardDesign(e){
+    let alpha = document.getElementsByClassName(`${e.target.getAttribute('product-id')}`)
+    console.log(alpha)
+
+    for(let ul=0; ul < alpha.length; ul++) {
+        alpha[ul].innerHTML = `<li class="w-icon active minus-button" product-id="${e.target.getAttribute('product-id')}"><a href="#" product-id="${e.target.getAttribute('product-id')}"><i class="fa fa-minus"></i></a></li>
+        <li class="quick-view product-card" product-id="${e.target.getAttribute('product-id')}"><a href="#" product-id="${e.target.getAttribute('product-id')}" class="num-selected">1</a></li>
+        <li class="w-icon active plus-button" product-id="${e.target.getAttribute('product-id')}"><a href="#" product-id="${e.target.getAttribute('product-id')}"><i class="fa fa-plus"></i></a></li>`
+    }
+
+
+    // Add event listener on the plus and minus button
+    let minusBtn = document.querySelectorAll(".minus-button")
+    let plusBtn = document.querySelectorAll(".plus-button")
+
+    minusBtn.forEach(btn => {
+    	btn.addEventListener("click", (e) => {
+            reduceAmount(e)
+        })
+    })
+    
+    plusBtn.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            increaseAmount(e)
+        })
+    })
+}
+
+// function to reduce the number by -1 
+function reduceAmount(e){
+    let alpha = e.target.parentElement.nextElementSibling.firstChild
+    console.log(alpha.innerHTML)
+
+    // Check if the number is less than 2 to avoid updating to 0 or -1
+    if(parseInt(alpha.innerHTML) < 2){
+        returnState(e)
+    }
+    else{
+        alpha.innerHTML = parseInt(alpha.innerHTML) - 1
+    }
+}
+
+// function to increase the number by +1
+function increaseAmount(e){
+
+
+    let alpha = e.target.parentElement.previousElementSibling.firstChild
+    console.log(alpha.innerHTML)
+    alpha.innerHTML = parseInt(alpha.innerHTML) + 1
+}
+
+// Return the product card to normal state of only add to cart button
+function returnState(e){
+    let alpha = document.getElementsByClassName(`${e.target.getAttribute('product-id')}`)
+    console.log(alpha)
+
+    for(let ul=0; ul < alpha.length; ul++) {
+        alpha[ul].innerHTML = `<li class="w-icon active cart-button" product-id="${e.target.getAttribute('product-id')}"><a href="#" product-id="${e.target.getAttribute('product-id')}"><i class="fa fa-shopping-bag" product-id="${e.target.getAttribute('product-id')}" ></i></a></li>`
+    }
+
+    cartButton = document.querySelectorAll(".cart-button")
+    cartButton.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            changeCardDesign(e)
+        })
+    })
 }
