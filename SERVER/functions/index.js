@@ -30,15 +30,15 @@ app.get("/check", (req, res) => {
 
 app.get("/", async(req, res) => {
 
-    let Female = await fireStoreClient.get_with_limit("Products", "root_category", "Female")
+    let Female = await fireStoreClient.get_with_limit("Products", "root_category", "Women")
     let Kids = await fireStoreClient.get_with_limit("Products", "root_category", "Kids")
-    let Material = await fireStoreClient.get_with_limit("Products", "root_category", "Material")
+    let Material = await fireStoreClient.get_with_limit("Products", "root_category", "Materials")
 
     console.log("KIDS: \n", Kids, '\n\n\n')
     console.log("FEMALE: \n", Female, '\n\n\n')
     console.log("MATERIAL: \n", Material, '\n\n\n')
 
-    res.render("index", {Kids, Female, Material})
+    res.render("index", { Kids, Female, Material })
         // res.render("index.ejs", { Kids, Female, Material })
 })
 
@@ -65,7 +65,7 @@ app.get("/kids", async(req, res) => {
 
     const section = "Kids"
 
-    res.render("product", {products_list, categories_list, section})
+    res.render("product", { products_list, categories_list, section })
 
 })
 
@@ -73,14 +73,14 @@ app.get("/Female", async(req, res) => {
     const products_list = []
     let categories_list = []
 
-    let products = await fireStoreClient.array_contains("Products", "root_category", "Female")
+    let products = await fireStoreClient.array_contains("Products", "root_category", "Women")
     products.forEach((doc) => {
         data = doc.data()
         data.id = doc.id
         products_list.push(data)
     });
 
-    let categories = await fireStoreClient.array_contains("Category", "section", "Female")
+    let categories = await fireStoreClient.array_contains("Category", "section", "Women")
     categories.forEach((doc) => {
         data = doc.data()
         data.id = doc.id
@@ -92,7 +92,7 @@ app.get("/Female", async(req, res) => {
 
     const section = "Women's"
 
-    res.render("product", {products_list, categories_list, section})
+    res.render("product", { products_list, categories_list, section })
 
 })
 
@@ -100,14 +100,14 @@ app.get("/Material", async(req, res) => {
     const products_list = []
     let categories_list = []
 
-    let products = await fireStoreClient.array_contains("Products", "root_category", "Material")
+    let products = await fireStoreClient.array_contains("Products", "root_category", "Materials")
     products.forEach((doc) => {
         data = doc.data()
         data.id = doc.id
         products_list.push(data)
     });
 
-    let categories = await fireStoreClient.array_contains("Category", "section", "Material")
+    let categories = await fireStoreClient.array_contains("Category", "section", "Materials")
     categories.forEach((doc) => {
         data = doc.data()
         data.id = doc.id
@@ -119,7 +119,7 @@ app.get("/Material", async(req, res) => {
 
     const section = "Materials / Applique"
 
-    res.render("product", {products_list, categories_list, section})
+    res.render("product", { products_list, categories_list, section })
 
 })
 
@@ -151,6 +151,7 @@ app.get("/contact", async(req, res) => {
 
 app.get("/detail/:id", async(req, res) => {
     const id = req.params.id
+    let product;
     let get_product = async() => {
         console.log("abput sending product from firrestore")
         product = await fireStoreClient.findById("Products", id)
@@ -158,11 +159,11 @@ app.get("/detail/:id", async(req, res) => {
         data.id = product.id
         return data
     }
-    let product = await get_product();
+    product = await get_product();
 
     console.log(product)
 
-    return res.send(product)
+    return res.jaon(product)
 })
 
 app.get("/search/:query/:value", async(req, res) => {
