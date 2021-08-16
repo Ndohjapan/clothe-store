@@ -280,6 +280,67 @@ let productId
 let productImages = []
 let imageModal 
 
+// This updates the number at the top showing number of products in cart
+totalInCart()
+
+// Check if there are some already selected items
+
+
+let isFull = false
+let cartProduct = JSON.parse(localStorage.getItem("cart"))
+
+for(let value of Object.values(cartProduct)){ 
+    if(value){ 
+        
+        console.log(value) 
+        isFull = true
+        changeCards()
+        break 
+        
+    } 
+
+} 
+
+// This functions updates each card with the right ui once the page loads
+function changeCards(){
+    console.log(isFull)
+    if (isFull) { 
+        let cart = JSON.parse(localStorage.getItem("cart"))
+        
+        console.log(cart)
+
+        Object.keys(cart).forEach(id => {
+            
+            console.log(id, cart[id])
+
+            if(cart[id]){
+                let alpha = document.getElementsByClassName(`${id}`)
+                console.log(alpha)
+
+                for(let ul=0; ul < alpha.length; ul++) {
+                    alpha[ul].innerHTML = `<li class="w-icon active minus-button" product-id="${id}"><a href="#" product-id="${id}"><i class="fa fa-minus"></i></a></li>
+                    <li class="quick-view product-card" product-id="${id}"><a href="#" product-id="${id}" class="num-selected">${cart[id]}</a></li>
+                    <li class="w-icon active plus-button" product-id="${id}"><a href="#" product-id="${id}"><i class="fa fa-plus"></i></a></li>`
+                }
+            }
+    
+        })
+    
+        let minusBtn = document.querySelectorAll(".minus-button")
+        let plusBtn = document.querySelectorAll(".plus-button")
+        
+        minusBtn.forEach(btn => {
+            btn.addEventListener("click", reduceAmount)
+        })
+        
+        plusBtn.forEach(btn => {
+            btn.addEventListener("click", increaseAmount)
+        })
+    } 
+
+}
+
+
 mobileMenuToggle.addEventListener("click", () => {
     mobileMenu.classList.toggle("open-menu")
     if(mobileMenuToggle.children[0].classList.contains("fa-bars")){
@@ -501,54 +562,120 @@ function changeCardDesign(e){
         <li class="w-icon active plus-button" product-id="${e.target.getAttribute('product-id')}"><a href="#" product-id="${e.target.getAttribute('product-id')}"><i class="fa fa-plus"></i></a></li>`
     }
 
-
     // Add event listener on the plus and minus button
     let minusBtn = document.querySelectorAll(".minus-button")
     let plusBtn = document.querySelectorAll(".plus-button")
-
+    
     minusBtn.forEach(btn => {
-    	btn.addEventListener("click", (e) => {
-            reduceAmount(e)
-        })
+    	btn.removeEventListener("click", reduceAmount)
+    	btn.addEventListener("click", reduceAmount)
     })
     
     plusBtn.forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            increaseAmount(e)
-        })
+        btn.removeEventListener("click", increaseAmount)
+        btn.addEventListener("click", increaseAmount)
     })
+
+    add_to_bag_function(e.target.getAttribute('product-id'))
+}
+
+// Function to create cart in the localStorage
+function add_to_bag_function(product_id) {
+    
+
+    if (localStorage.getItem("cart")) {
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        cart[product_id] = 1
+        cart = JSON.stringify(cart)
+        localStorage.setItem("cart", cart)
+    } else {
+        let cart = {}
+        cart[product_id] = 1
+        cart = JSON.stringify(cart)
+        localStorage.setItem('cart', cart)
+    }
+
+    totalInCart()
+
 }
 
 // function to reduce the number by -1 
-function reduceAmount(e){
-    let alpha = e.target.parentElement.nextElementSibling.firstChild
-    console.log(alpha.innerHTML)
-
-    // Check if the number is less than 2 to avoid updating to 0 or -1
+function reduceAmount(){
+    let alpha = this.nextElementSibling.firstChild
+    
+    let id = alpha.parentElement.previousElementSibling.getAttribute("product-id")
+//     Check if the number is less than 2 to avoid updating to 0 or -1
     if(parseInt(alpha.innerHTML) < 2){
-        returnState(e)
+       add_no(this.getAttribute("product-id"), 0) 
+        returnState(this)
     }
     else{
-        alpha.innerHTML = parseInt(alpha.innerHTML) - 1
+        alpha.innerHTML = (parseInt(alpha.innerHTML)) - 1
+       add_no(this.getAttribute("product-id"), alpha.innerHTML)
+        
     }
+
+
+    
 }
+
 
 // function to increase the number by +1
-function increaseAmount(e){
+function increaseAmount(){
+    console.log(this.previousElementSibling)
+    let alpha = this.previousElementSibling.firstChild
+	
+    let id = alpha.parentElement.nextElementSibling.getAttribute("product-id")  
+    
+    console.log(alpha)
+    console.log(id)
+    
+    alpha.innerHTML = (parseInt(alpha.innerHTML)) + 1
 
-
-    let alpha = e.target.parentElement.previousElementSibling.firstChild
-    console.log(alpha.innerHTML)
-    alpha.innerHTML = parseInt(alpha.innerHTML) + 1
+    add_no(this.getAttribute("product-id"), alpha.innerHTML)
 }
+
+
+// Function to update cart in localstorage
+function add_no(prodixt_id, num) {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    
+    cart[prodixt_id] = num
+    console.log(cart)
+    cart = JSON.stringify(cart)
+    localStorage.setItem("cart", cart)
+
+    totalInCart()
+}
+
+// Function to get total number of products in cart
+function totalInCart(){
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    let total = 0
+
+    Object.values(cart).forEach(value => {
+        if(value){
+            total += 1
+        }
+    })
+
+    document.querySelector(".total-cart-number").innerHTML = total
+}
+
 
 // Return the product card to normal state of only add to cart button
 function returnState(e){
-    let alpha = document.getElementsByClassName(`${e.target.getAttribute('product-id')}`)
+	console.log(e)
+    let alpha = document.getElementsByClassName(`${e.getAttribute('product-id')}`)
+    let id = e.getAttribute("product-id")
+
+    alpha = alpha.length ? alpha : document.getElementsByClassName(`${e.parentElement.getAttribute('product-id')}`)
+    id = id ? id : e.parentElement.getAttribute("product-id")
+    
     console.log(alpha)
 
     for(let ul=0; ul < alpha.length; ul++) {
-        alpha[ul].innerHTML = `<li class="w-icon active cart-button" product-id="${e.target.getAttribute('product-id')}"><a href="#" product-id="${e.target.getAttribute('product-id')}"><i class="fa fa-shopping-bag" product-id="${e.target.getAttribute('product-id')}" ></i></a></li>`
+        alpha[ul].innerHTML = `<li class="w-icon active cart-button" product-id="${id}"><a href="#" product-id="${id}"><i class="fa fa-shopping-bag" product-id="${id}" ></i></a></li>`
     }
 
     cartButton = document.querySelectorAll(".cart-button")

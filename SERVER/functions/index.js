@@ -125,13 +125,13 @@ app.get("/Material", async(req, res) => {
 
 app.post("/cartProduct", async(req, res) => {
     const body = JSON.parse(req.body);
-    console.log("body: \n\n", body)
     const products = []
     let item
 
-    for await (let product of body) {
+    for await (let product of Object.keys(body)) {
         console.log("abput sending product from firrestore")
-        let product_ = await fireStoreClient.findById("Products", product.id)
+        let product_ = await fireStoreClient.findById("Products", product)
+        console.log(product_.data())
         item = product_.data()
         item.id = product_.id
         products.push(item)

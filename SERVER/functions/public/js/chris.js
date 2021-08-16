@@ -8,7 +8,6 @@ function add_no() {
         if (item.id === prodixt_id) {
             console.log("item found: ", item)
             item.quantity += 1
-            this.parentElement.querySelector("span").innerText = item.quantity
             return true
         }
     })
@@ -29,7 +28,6 @@ function sub_no() {
             console.log("item found: ", item)
             if (item.quantity > 1) {
                 item.quantity -= 1
-                this.parentElement.querySelector("span").innerText = item.quantity
                 return true
             }
         }
