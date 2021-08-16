@@ -84,7 +84,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="<%= element.images[0].secure_url %> " class="product-card"  alt="" product-id="<%= element.id %> " >
+                                            <img src="<%= element.images[0].secure_url %> " class="product-card"  alt="" product-id="<%=element.id%>" >
         
                                             <% if (element.isAvailable === 'yes') { %>
                                                 <div class="sale">Buy Now</div>
@@ -95,18 +95,18 @@
                                             <div class="icon">
                                                 <i class="fa fa-heart-o"></i>
                                             </div>
-                                            <ul>
-                                                <li class="w-icon active product-card" product-id="<%= element.id %> " ><a href="#" product-id="<%= element.id %> " ><i class="fa fa-shopping-bag"></i></a></li>
-                                                <li class="quick-view product-card" product-id="<%= element.id %> " ><a href="#" product-id="<%= element.id %> " >+ View</a></li>
-                                                
+                                            <ul class="<%=element.id%>" >
+
+                                                <li class="w-icon active " product-id="<%=element.id%>"><a href="#" class="cart-button" product-id="<%=element.id%>"><i product-id="<%=element.id%>" class="fa fa-shopping-bag"></i></a></li>
+
                                             </ul>
                                         </div>
                                         <div class="pi-text">
                                             <div class="catagory-name"><%= element.category %></div>
-                                            <a href="#" product-id="<%= element.id %> " class="product-card" >
+                                            <a href="#" product-id="<%=element.id%>" class="product-card" >
                                                 <h5><%= element.name %> </h5>
                                             </a>
-                                            <div class="product-price product-card" product-id="<%= element.id %> ">
+                                            <div class="product-price product-card" product-id="<%=element.id%>">
                                                 NGN <%= element.price %> 
                                                 <span>NGN <%= element.slashed_price %></span>
                                             </div>
@@ -167,35 +167,8 @@
     <!-- Product Image Carousel -->
     <div class="product-card-modal">
         
-        <button class="btn btn-sm mt-2 close-modal close-image-modal" type="button">Close <i class="fa fa-times"></i> </button>
+        
 
-        <div class="product-slider product-card-slider owl-carousel container">
-            <div class="  testimonial-section-card  row">
-                <div class=" col-12 pl-center">
-                    <img src="./img/products/man-3.jpg" alt="" width="50%" class="img-fluid">
-                </div>
-                
-            </div>
-            <div class="  testimonial-section-card  row">
-                <div class=" col-12 pl-center">
-                    <img src="./img/products/man-2.jpg" alt="" width="50%" class="img-fluid">
-                </div>
-                
-            </div>
-            <div class="  row testimonial-section-card">
-                <div class=" col-12 pl-center">
-                    <img src="./img/products/man-4.jpg" alt="" width="50%" class="img-fluid">
-                </div>
-                
-            </div>
-            <div class="  row testimonial-section-card">
-                <div class=" col-12 pl-center">
-                    <img src="./img/products/women-3.jpg" alt="" width="50%" class="img-fluid">
-                </div>
-            </div>
-            
-            
-        </div>
             
     </div>
 
