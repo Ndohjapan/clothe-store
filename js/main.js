@@ -47,12 +47,14 @@
     /*------------------
         Product Slider
     --------------------*/
-   $(".product-slider").owlCarousel({
+    $(".product-slider").owlCarousel({
         loop: true,
-        margin: 25,
+        margin: 0,
         nav: true,
         items: 4,
-        dots: true,
+        dots: false,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
         navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
         smartSpeed: 1200,
         autoHeight: false,

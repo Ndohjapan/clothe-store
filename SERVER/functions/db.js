@@ -34,12 +34,11 @@ class fireStoreClient {
         const docref = await this.fireStore.collection(colname).orderBy(query).get();
         return docref
     }
-    async get_with_limit(colname, query) {
+    async get_with_limit(colname, queryName, queryValue) {
         let data;
         let products = [];
-        console.log(query)
-        const docref = await this.fireStore.collection(colname).orderBy(query).limit(5).get();
-        
+        const docref = await this.fireStore.collection(colname).where(queryName, "==", queryValue).limit(5).get();
+
         docref.forEach((doc) => {
             data = doc.data()
             data.id = doc.id
