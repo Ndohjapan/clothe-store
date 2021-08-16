@@ -3,7 +3,10 @@ let checkoutBtn = document.querySelector(".checkout-btn")
 let cartContent = JSON.parse(localStorage.getItem("cart"))
 
 let cartDetails = {}
-filterCartContent()
+
+if(cartContent){
+    filterCartContent()
+}
 
 // Function to get the exact products from cart that is in the localstorage
 function filterCartContent(){

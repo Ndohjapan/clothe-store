@@ -289,17 +289,20 @@ totalInCart()
 let isFull = false
 let cartProduct = JSON.parse(localStorage.getItem("cart"))
 
-for(let value of Object.values(cartProduct)){ 
-    if(value){ 
-        
-        console.log(value) 
-        isFull = true
-        changeCards()
-        break 
-        
-    } 
+if(cartProduct){
 
-} 
+    for(let value of Object.values(cartProduct)){ 
+        if(value){ 
+            
+            console.log(value) 
+            isFull = true
+            changeCards()
+            break 
+            
+        } 
+    
+    } 
+}
 
 // This functions updates each card with the right ui once the page loads
 function changeCards(){
@@ -336,6 +339,7 @@ function changeCards(){
         plusBtn.forEach(btn => {
             btn.addEventListener("click", increaseAmount)
         })
+
     } 
 
 }
@@ -653,11 +657,14 @@ function totalInCart(){
     let cart = JSON.parse(localStorage.getItem("cart"))
     let total = 0
 
-    Object.values(cart).forEach(value => {
-        if(value){
-            total += 1
-        }
-    })
+    if(cart){
+
+        Object.values(cart).forEach(value => {
+            if(value){
+                total += 1
+            }
+        })
+    }
 
     document.querySelector(".total-cart-number").innerHTML = total
 }
